@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
   describe 'associations' do
     it { should have_many(:twitter_messages) }
   end
-  
+
   describe 'sincronization' do
     let(:username){'rails'}
     before do
