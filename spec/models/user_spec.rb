@@ -5,19 +5,23 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:username) }
     it { should validate_uniqueness_of(:username) }
   end
+
+  describe 'associations' do
+    it { should have_many(:twitter_messages) }
+  end
   
   describe 'sincronization' do
-    let(:username){'dillon'}
+    let(:username){'rails'}
     before do
-      #WebMock.disable_net_connect!(:allow => 'api.twitter.com')
-      stub_request(:get, /api.twitter.com/).
-        with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
-        to_return(status: 200, body: "{data: {id: '123', attrs: {text: 'hello world'}}}", headers: {})
       create(:user, username: username)
     end
 
     it 'should create TwitterMessage with twitter api response' do
-      User.sync_all
+      VCR.use_cassette("twitter_api") do
+        User.sync_all
+        user = User.find_by(username: username)
+        expect(user).to have(20).twitter_messages
+      end
     end
   end
 end

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
+  has_many :twitter_messages
 
   TWITTER_CLIENT = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["CONSUMER_KEY"]
@@ -19,7 +20,6 @@ class User < ApplicationRecord
         rescue 
           puts "#{user.username} - cant sync"
         end
-        
       end
     end
   end

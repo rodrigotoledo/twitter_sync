@@ -71,7 +71,9 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 5.0'
   gem 'rails-controller-testing'
+  gem 'rspec-collection_matchers'
   gem "webmock"
+  gem "vcr"
 end
 
 gem 'twitter'
