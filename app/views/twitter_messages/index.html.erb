@@ -1,0 +1,7 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>TwitterMessages</h1>
+<%= turbo_stream_from "twitter_messages" %>
+<%= turbo_frame_tag "twitter_messages" do %>
+  <%= render @twitter_messages %>
+<% end %>

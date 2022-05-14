@@ -1,0 +1,4 @@
+:schedule:
+  user_sync_job:
+    cron: '0 * * * * *'   # Runs once per minute
+    class: UserSyncJob

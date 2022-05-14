@@ -79,3 +79,6 @@ end
 gem 'twitter'
 gem 'dotenv-rails'
 gem 'pg'
+gem "sidekiq", "~> 6.4"
+
+gem "sidekiq-scheduler", "~> 4.0"
